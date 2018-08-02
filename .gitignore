@@ -18,6 +18,8 @@
 *.tar.gz
 *.rar
 
+*.iml
+
 logs
 target
 /.idea
