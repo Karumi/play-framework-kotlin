@@ -6,9 +6,3 @@ create table developer (
   email                         varchar(255),
   constraint pk_developer primary key (id)
 );
-
-
-# --- !Downs
-
-drop table if exists developer;
-
