@@ -7,6 +7,7 @@ import developers.domain.usecase.GetDeveloper
 import developers.toDomain
 import play.mvc.Controller
 import play.mvc.Result
+import play.mvc.Results
 import java.util.UUID
 import java.util.concurrent.CompletionStage
 import javax.inject.Inject
@@ -44,7 +45,7 @@ class Application @Inject constructor(
     }
   }
 
-  fun processError(error: Throwable): Result = badRequest()
-  fun created(developer: Developer): Result = created(developer.toJson())
-  fun ok(developer: Developer): Result = ok(developer.toJson())
+  private fun processError(error: Throwable): Result = internalServerError()
+  private fun created(developer: Developer): Result = created(developer.toJson())
+  private fun ok(developer: Developer): Result = ok(developer.toJson())
 }
