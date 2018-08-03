@@ -1,6 +1,5 @@
 package controllers
 
-import developers.NewDeveloperJson
 import developers.domain.Developer
 import developers.storage.DeveloperDao
 import given.GivenDeveloper
@@ -29,10 +28,11 @@ class ApplicationTest : ApplicationWithDatabase(), ParseableJson, GivenDeveloper
     val result = postDeveloperRoute(newDeveloper)
 
     val createdDeveloper = result.asObject(Developer::class)
-    val developer = Developer(createdDeveloper.id, newDeveloper.username, newDeveloper.email)
+    val obtainedDeveloper = getById(createdDeveloper.id)
 
-    assertEquals(developer, createdDeveloper)
-    assertEquals(developer, getById(developer.id))
+    assertEquals(newDeveloper.username, createdDeveloper.username)
+    assertEquals(newDeveloper.email, createdDeveloper.email)
+    assertEquals(createdDeveloper, obtainedDeveloper)
     assertEquals(CREATED, result.status())
   }
 
@@ -78,6 +78,7 @@ class ApplicationTest : ApplicationWithDatabase(), ParseableJson, GivenDeveloper
     route(app, fakeRequest("POST", "/developer").bodyJson(body.toJson()))
 
   private data class InvalidJson(val invalid: String = "")
+
   private fun getById(id: UUID) = dao.getById(id)
   private fun create(developer: Developer) = dao.create(developer)
 }
