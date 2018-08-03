@@ -1,5 +1,6 @@
 package developers
 
+import developers.domain.Developer
 import java.util.UUID
 
 data class NewDeveloperJson(

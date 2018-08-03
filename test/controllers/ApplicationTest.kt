@@ -1,6 +1,6 @@
 package controllers
 
-import developers.Developer
+import developers.domain.Developer
 import developers.storage.DeveloperDao
 import junit.framework.Assert.assertEquals
 import org.junit.Test
@@ -19,8 +19,8 @@ class ApplicationTest : ApplicationWithDatabase(), ParseableJson {
   val dao = DeveloperDao()
 
   @Test
-  fun `developer POST should create a developer`() {
-    val newDeveloper = givenANewDeveloper()
+  fun `developer POST should create a developer if it's a karumi developer`() {
+    val newDeveloper = givenANewKarumiDev()
 
     val result = route(app, fakeRequest("POST", "/developer")
       .bodyJson(newDeveloper.toJson()))
@@ -32,6 +32,17 @@ class ApplicationTest : ApplicationWithDatabase(), ParseableJson {
     assertEquals(developer, getById(developer.id))
     assertEquals(CREATED, result.status())
   }
+
+  @Test
+  fun `developer POST shouldn't create a developer if it isn't a karumi developer`() {
+    val newDeveloper = givenANewDeveloper()
+
+    val result = route(app, fakeRequest("POST", "/developer")
+      .bodyJson(newDeveloper.toJson()))
+
+    assertEquals(BAD_REQUEST, result.status())
+  }
+
 
   @Test
   fun `developer POST should returns 400 if the json is bad formed`() {

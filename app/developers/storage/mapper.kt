@@ -1,6 +1,6 @@
 package developers.storage
 
-import developers.Developer
+import developers.domain.Developer
 
 fun Developer.toEntity(): DeveloperEntity =
   DeveloperEntity().also { entity ->

@@ -1,4 +1,4 @@
-package developers
+package developers.domain
 
 import java.util.UUID
 

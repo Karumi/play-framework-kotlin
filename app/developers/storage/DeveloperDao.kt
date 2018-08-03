@@ -1,6 +1,6 @@
 package developers.storage
 
-import developers.Developer
+import developers.domain.Developer
 import java.util.UUID
 
 class DeveloperDao {
