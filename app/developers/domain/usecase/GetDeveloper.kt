@@ -15,7 +15,7 @@ class GetDeveloper @Inject constructor(
 
   operator fun invoke(developerId: UUID): Either<DeveloperError, Developer> =
     developerDao.getById(developerId).fold(
-      ifFailure = DeveloperError.Companion::toStorageError,
+      ifFailure = ::toStorageError,
       ifSuccess = this::toEither
     )
 
