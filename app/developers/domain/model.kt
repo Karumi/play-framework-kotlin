@@ -14,9 +14,4 @@ sealed class DeveloperError {
   object StorageError : DeveloperError()
   object NotFound : DeveloperError()
   object NotKarumier : DeveloperError()
-
-  companion object {
-    fun toStorageError(ex: Throwable): Either<DeveloperError, Developer> =
-      DeveloperError.StorageError.left()
-  }
 }
