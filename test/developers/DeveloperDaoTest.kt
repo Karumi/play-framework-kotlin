@@ -13,17 +13,6 @@ class DeveloperDaoTest : ApplicationWithDatabase(), GivenDeveloper by givenDevel
   val dao = DeveloperDao()
 
   @Test
-  fun `developer should be created and retrieved by id`() {
-    val developer = givenDeveloper()
-
-    val createdDeveloper = dao.create(developer)
-    val obtainedDeveloper = dao.getById(developer.id)
-
-    assertEquals(developer, createdDeveloper)
-    assertEquals(developer, obtainedDeveloper)
-  }
-
-  @Test
   fun `developer should be updated`() {
     val developer = givenDeveloper()
     dao.create(developer)
@@ -36,10 +25,4 @@ class DeveloperDaoTest : ApplicationWithDatabase(), GivenDeveloper by givenDevel
     assertEquals(developerUpdate, obtainedDeveloper)
   }
 
-  @Test
-  fun `developer should be null if there are not developers`() {
-    val obtainedDeveloper = dao.getById(givenDeveloper().id)
-
-    assertNull(obtainedDeveloper)
-  }
 }
