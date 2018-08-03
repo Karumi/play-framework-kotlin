@@ -4,7 +4,7 @@ import developers.domain.Developer
 import developers.storage.DeveloperDao
 import given.GivenDeveloper
 import given.givenDeveloper
-import junit.framework.Assert.assertEquals
+import junit.framework.TestCase.assertEquals
 import org.junit.Test
 import play.mvc.Http.Status.BAD_REQUEST
 import play.mvc.Http.Status.CREATED
@@ -79,6 +79,6 @@ class ApplicationTest : ApplicationWithDatabase(), ParseableJson, GivenDeveloper
 
   private data class InvalidJson(val invalid: String = "")
 
-  private fun getById(id: UUID) = dao.getById(id)
-  private fun create(developer: Developer) = dao.create(developer)
+  private fun getById(id: UUID) = dao.getById(id).get().get()
+  private fun create(developer: Developer) = dao.create(developer).get()
 }

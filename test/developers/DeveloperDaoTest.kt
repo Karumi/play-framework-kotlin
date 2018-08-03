@@ -1,5 +1,6 @@
 package developers
 
+import arrow.core.getOrElse
 import developers.storage.DeveloperDao
 import given.GivenDeveloper
 import given.givenDeveloper
@@ -18,8 +19,8 @@ class DeveloperDaoTest : ApplicationWithDatabase(), GivenDeveloper by givenDevel
     dao.create(developer)
 
     val developerUpdate = developer.copy(username = "Pedro")
-    val updatedDeveloper = dao.update(developerUpdate)
-    val obtainedDeveloper = dao.getById(developer.id)
+    val updatedDeveloper = dao.update(developerUpdate).get()
+    val obtainedDeveloper = dao.getById(developer.id).get().get()
 
     assertEquals(developerUpdate, updatedDeveloper)
     assertEquals(developerUpdate, obtainedDeveloper)
