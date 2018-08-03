@@ -12,7 +12,7 @@ interface GivenDeveloper {
 
 val givenDeveloper = GivenDummyDevelopers()
 
-class GivenDummyDevelopers: GivenDeveloper {
+class GivenDummyDevelopers : GivenDeveloper {
 
   override fun givenDeveloper(): Developer = Developer(
     id = UUID.randomUUID(),

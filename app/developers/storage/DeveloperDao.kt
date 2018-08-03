@@ -27,5 +27,4 @@ class DeveloperDao {
       ?.toDomain()
       .toOption()
   }
-
 }

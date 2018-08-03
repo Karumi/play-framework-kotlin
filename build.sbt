@@ -23,11 +23,7 @@ testOptions += Tests.Argument(TestFrameworks.JUnit, "-q", "-v", "-a")
 libraryDependencies ++= Seq(javaJdbc, ehcache, javaWs, guice,
   "io.arrow-kt" % "arrow-core" % "0.7.2",
   "io.arrow-kt" % "arrow-syntax" % "0.7.2",
-  "io.arrow-kt" % "arrow-typeclasses" % "0.7.2",
-  "io.arrow-kt" % "arrow-data" % "0.7.2",
   "io.arrow-kt" % "arrow-instances-core" % "0.7.2",
-  "io.arrow-kt" % "arrow-instances-data" % "0.7.2",
-  "io.arrow-kt" % "arrow-annotations-processor" % "0.7.2",
   "com.fasterxml.jackson.module" % "jackson-module-kotlin" % "2.9.5",
   "org.postgresql" % "postgresql" % "42.2.1",
   "com.h2database" % "h2" % "1.4.192" % Test

@@ -2,9 +2,6 @@ package developers.storage
 
 import io.ebean.Finder
 import io.ebean.Model
-import io.ebean.annotation.CreatedTimestamp
-import io.ebean.annotation.UpdatedTimestamp
-import java.sql.Timestamp
 import java.util.UUID
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue

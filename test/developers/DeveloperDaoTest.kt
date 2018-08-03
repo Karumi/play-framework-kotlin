@@ -1,11 +1,9 @@
 package developers
 
-import arrow.core.getOrElse
 import developers.storage.DeveloperDao
 import given.GivenDeveloper
 import given.givenDeveloper
 import junit.framework.TestCase.assertEquals
-import junit.framework.TestCase.assertNull
 import org.junit.Test
 import utils.ApplicationWithDatabase
 
@@ -25,5 +23,4 @@ class DeveloperDaoTest : ApplicationWithDatabase(), GivenDeveloper by givenDevel
     assertEquals(developerUpdate, updatedDeveloper)
     assertEquals(developerUpdate, obtainedDeveloper)
   }
-
 }
