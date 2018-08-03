@@ -15,6 +15,7 @@ import play.test.Helpers.fakeRequest
 import play.test.Helpers.route
 import utils.ApplicationWithDatabase
 import utils.asObject
+import utils.getOrNull
 import java.util.UUID
 
 class ApplicationTest : ApplicationWithDatabase(), ParseableJson, GivenDeveloper by givenDeveloper {
@@ -79,6 +80,6 @@ class ApplicationTest : ApplicationWithDatabase(), ParseableJson, GivenDeveloper
 
   private data class InvalidJson(val invalid: String = "")
 
-  private fun getById(id: UUID) = dao.getById(id).get().get()
-  private fun create(developer: Developer) = dao.create(developer).get()
+  private fun getById(id: UUID) = dao.getById(id).getOrNull()?.getOrNull()
+  private fun create(developer: Developer) = dao.create(developer).getOrNull()!!
 }

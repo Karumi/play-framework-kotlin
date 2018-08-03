@@ -6,6 +6,7 @@ import given.givenDeveloper
 import junit.framework.TestCase.assertEquals
 import org.junit.Test
 import utils.ApplicationWithDatabase
+import utils.getOrNull
 
 class DeveloperDaoTest : ApplicationWithDatabase(), GivenDeveloper by givenDeveloper {
 
@@ -17,8 +18,8 @@ class DeveloperDaoTest : ApplicationWithDatabase(), GivenDeveloper by givenDevel
     dao.create(developer)
 
     val developerUpdate = developer.copy(username = "Pedro")
-    val updatedDeveloper = dao.update(developerUpdate).get()
-    val obtainedDeveloper = dao.getById(developer.id).get().get()
+    val updatedDeveloper = dao.update(developerUpdate).getOrNull()
+    val obtainedDeveloper = dao.getById(developer.id).getOrNull()?.getOrNull()
 
     assertEquals(developerUpdate, updatedDeveloper)
     assertEquals(developerUpdate, obtainedDeveloper)
