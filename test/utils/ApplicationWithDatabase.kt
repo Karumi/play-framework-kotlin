@@ -1,7 +1,5 @@
 package utils
 
-import developers.NewDeveloperJson
-import developers.domain.Developer
 import developers.storage.DeveloperEntity
 import io.ebean.Ebean
 import io.ebean.EbeanServerFactory
@@ -9,7 +7,6 @@ import io.ebean.config.ServerConfig
 import org.avaje.datasource.DataSourceConfig
 import org.junit.Before
 import play.test.WithApplication
-import java.util.UUID
 
 open class ApplicationWithDatabase : WithApplication() {
 
@@ -32,20 +29,4 @@ open class ApplicationWithDatabase : WithApplication() {
     config.classes = listOf(DeveloperEntity::class.java)
     Ebean.register(EbeanServerFactory.create(config), true)
   }
-
-  fun givenADeveloper(): Developer = Developer(
-    id = UUID.randomUUID(),
-    username = "Unknown",
-    email = null
-  )
-
-  fun givenANewDeveloper(): NewDeveloperJson = NewDeveloperJson(
-    username = "Unknown",
-    email = "email@email.com"
-  )
-
-  fun givenANewKarumiDev(): NewDeveloperJson = NewDeveloperJson(
-    username = "Unknown",
-    email = "email@karumi.com"
-  )
 }

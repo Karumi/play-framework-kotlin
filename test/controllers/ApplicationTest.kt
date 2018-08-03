@@ -2,6 +2,8 @@ package controllers
 
 import developers.domain.Developer
 import developers.storage.DeveloperDao
+import given.GivenDeveloper
+import given.givenDeveloper
 import junit.framework.Assert.assertEquals
 import org.junit.Test
 import play.mvc.Http.Status.BAD_REQUEST
@@ -14,13 +16,13 @@ import utils.ApplicationWithDatabase
 import utils.asObject
 import java.util.UUID
 
-class ApplicationTest : ApplicationWithDatabase(), ParseableJson {
+class ApplicationTest : ApplicationWithDatabase(), ParseableJson, GivenDeveloper by givenDeveloper {
 
   val dao = DeveloperDao()
 
   @Test
   fun `developer POST should create a developer if it's a karumi developer`() {
-    val newDeveloper = givenANewKarumiDev()
+    val newDeveloper = givenNewKarumiDeveloper()
 
     val result = route(app, fakeRequest("POST", "/developer")
       .bodyJson(newDeveloper.toJson()))
@@ -35,7 +37,7 @@ class ApplicationTest : ApplicationWithDatabase(), ParseableJson {
 
   @Test
   fun `developer POST shouldn't create a developer if it isn't a karumi developer`() {
-    val newDeveloper = givenANewDeveloper()
+    val newDeveloper = givenNewDeveloper()
 
     val result = route(app, fakeRequest("POST", "/developer")
       .bodyJson(newDeveloper.toJson()))
@@ -54,7 +56,7 @@ class ApplicationTest : ApplicationWithDatabase(), ParseableJson {
 
   @Test
   fun `developer GET should retrieve by id`() {
-    val developer = givenADeveloper().let { create(it) }
+    val developer = givenDeveloper().let { create(it) }
 
     val result = route(app, fakeRequest("GET", "/developer/${developer.id}"))
 
@@ -64,7 +66,7 @@ class ApplicationTest : ApplicationWithDatabase(), ParseableJson {
 
   @Test
   fun `developer GET should returns 404 code if there isn't the developer in the database`() {
-    val developer = givenADeveloper()
+    val developer = givenDeveloper()
 
     val result = route(app, fakeRequest("GET", "/developer/${developer.id}"))
 

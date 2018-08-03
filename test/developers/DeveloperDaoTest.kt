@@ -1,18 +1,20 @@
 package developers
 
 import developers.storage.DeveloperDao
+import given.GivenDeveloper
+import given.givenDeveloper
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertNull
 import org.junit.Test
 import utils.ApplicationWithDatabase
 
-class DeveloperDaoTest : ApplicationWithDatabase() {
+class DeveloperDaoTest : ApplicationWithDatabase(), GivenDeveloper by givenDeveloper {
 
   val dao = DeveloperDao()
 
   @Test
   fun `developer should be created and retrieved by id`() {
-    val developer = givenADeveloper()
+    val developer = givenDeveloper()
 
     val createdDeveloper = dao.create(developer)
     val obtainedDeveloper = dao.getById(developer.id)
@@ -23,7 +25,7 @@ class DeveloperDaoTest : ApplicationWithDatabase() {
 
   @Test
   fun `developer should be updated`() {
-    val developer = givenADeveloper()
+    val developer = givenDeveloper()
     dao.create(developer)
 
     val developerUpdate = developer.copy(username = "Pedro")
@@ -36,7 +38,7 @@ class DeveloperDaoTest : ApplicationWithDatabase() {
 
   @Test
   fun `developer should be null if there are not developers`() {
-    val obtainedDeveloper = dao.getById(givenADeveloper().id)
+    val obtainedDeveloper = dao.getById(givenDeveloper().id)
 
     assertNull(obtainedDeveloper)
   }
