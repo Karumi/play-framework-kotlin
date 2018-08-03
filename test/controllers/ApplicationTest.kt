@@ -35,8 +35,6 @@ class ApplicationTest : ApplicationWithDatabase(), ParseableJson {
 
   @Test
   fun `developer POST should returns 400 if the json is bad formed`() {
-    class InvalidJson
-
     val result = route(app, fakeRequest("POST", "/developer")
       .bodyJson(InvalidJson().toJson()))
 
@@ -62,6 +60,7 @@ class ApplicationTest : ApplicationWithDatabase(), ParseableJson {
     assertEquals(NOT_FOUND, result.status())
   }
 
+  data class InvalidJson(val invalid: String = "")
   fun getById(id: UUID) = dao.getById(id)
   fun create(developer: Developer) = dao.create(developer)
 }

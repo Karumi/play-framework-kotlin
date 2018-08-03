@@ -3,11 +3,10 @@ package controllers
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import play.Logger
 import play.mvc.Controller
 import play.mvc.Http
 import play.mvc.Result
-import play.mvc.Results
+import play.mvc.Results.badRequest
 import java.util.concurrent.CompletionStage
 
 interface ParseableJson {
@@ -29,9 +28,7 @@ inline fun <reified A> Controller.readJsonBody(
 ): CompletionStage<Result> = try {
   success(Controller.request().readJsonBody())
 } catch (ex: Throwable) {
-  ex.printStackTrace()
-  Logger.info(ex.toString())
-  Results.badRequest("Json bad formed").completeFuture()
+  badRequest("Json bad formed").completeFuture()
 }
 
 inline fun <reified A> Http.Request.readJsonBody(): A {

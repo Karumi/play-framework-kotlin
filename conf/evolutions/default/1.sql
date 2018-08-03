@@ -1,6 +1,3 @@
-# --- Created by Ebean DDL
-# To stop Ebean DDL generation, remove this comment and start using Evolutions
-
 # --- !Ups
 
 create table developer (
@@ -13,5 +10,5 @@ create table developer (
 
 # --- !Downs
 
-drop table if exists developer cascade;
+drop table if exists developer;
 
