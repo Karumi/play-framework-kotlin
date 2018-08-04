@@ -12,7 +12,7 @@ We use [ktlint-sbt](https://github.com/Karumi/ktlint-sbt) as a linter and format
 
 * Run `sbt ktlint` 
 
-If you would like to run ktlint with formatter mode automatically before a `git commit` you can use [this pre-commit git hook](https://gist.github.com/tonilopezmr/88f651827a924993a6692b3bde2ca755) 
+If you would like to run ktlint with formatter mode automatically before a `git commit` you can use [this pre-commit git hook](https://gist.github.com/tonilopezmr/88f651827a924993a6692b3bde2ca755). 
 
 Running in local
 ================
@@ -26,6 +26,11 @@ This project runs with Play Framework, you will need to install some tools and f
 Run Test
 ========
 Run `sbt test` to run all the tests or `sbt "test-only *ClassName"` if you would like to run a single test.
+
+Limitations
+===========
+* kotlin-plugin doesn't support 1.2 kotlin version yet.
+* If you like to use twirl templates requires a mixed kotlin-java-scala compilation. 
 
 License
 -------
