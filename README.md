@@ -2,13 +2,17 @@
 
 This repository is used to show how to create a Play Framework project using Kotlin.
 
-Get the last version of kotlin-plugin
-================================
-This project uses the `1.0.9-SNAPSHOT` version of [kotlin-plugin][ktlint-plugin] we implemented here [pfn/kotlin-plugin#24](https://github.com/pfn/kotlin-plugin/pull/24) to run kotlin tests.
+ktlint-plugin
+=================
+This project uses the `1.0.9` version of [kotlin-plugin][ktlint-plugin] we implemented here [pfn/kotlin-plugin#24](https://github.com/pfn/kotlin-plugin/pull/24) to run kotlin tests. 
 
-1. Clone or download in your machine [kotlin-plugin][ktlint-plugin]
-2. Run `sbt scripted`. This will release locally the `1.0.9-SNAPSHOT` version in your local `ivy cache`.
-3. Add the kotlin plugin in `project/plugins.sbt` with the given version. `addSbtPlugin("com.hanhuy.sbt" % "kotlin-plugin" % "1.0.9-SNAPSHOT")` 
+ktlint-sbt plugin
+====================
+We use [ktlint-sbt](https://github.com/Karumi/ktlint-sbt) as a linter and formatter.
+
+* Run `sbt ktlint` 
+
+If you would like to run ktlint with formatter mode automatically before a `git commit` you can use [this pre-commit git hook](https://gist.github.com/tonilopezmr/88f651827a924993a6692b3bde2ca755) 
 
 Running in local
 ================
@@ -21,7 +25,7 @@ This project runs with Play Framework, you will need to install some tools and f
 
 Run Test
 ========
-* If you like run test you need execute `sbt test`
+Run `sbt test` to run all the tests or `sbt "test-only *ClassName"` if you would like to run a single test.
 
 License
 -------
