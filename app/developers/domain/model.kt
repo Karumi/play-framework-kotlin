@@ -1,7 +1,5 @@
 package developers.domain
 
-import arrow.core.Either
-import arrow.core.left
 import java.util.UUID
 
 data class Developer(
