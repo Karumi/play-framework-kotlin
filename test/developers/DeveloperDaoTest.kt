@@ -4,9 +4,9 @@ import developers.storage.DeveloperDao
 import given.GivenDeveloper
 import given.givenDeveloper
 import junit.framework.TestCase.assertEquals
-import junit.framework.TestCase.assertNull
 import org.junit.Test
 import utils.ApplicationWithDatabase
+import utils.getOrNull
 
 class DeveloperDaoTest : ApplicationWithDatabase(), GivenDeveloper by givenDeveloper {
 
@@ -18,11 +18,10 @@ class DeveloperDaoTest : ApplicationWithDatabase(), GivenDeveloper by givenDevel
     dao.create(developer)
 
     val developerUpdate = developer.copy(username = "Pedro")
-    val updatedDeveloper = dao.update(developerUpdate)
-    val obtainedDeveloper = dao.getById(developer.id)
+    val updatedDeveloper = dao.update(developerUpdate).getOrNull()
+    val obtainedDeveloper = dao.getById(developer.id).getOrNull()?.getOrNull()
 
     assertEquals(developerUpdate, updatedDeveloper)
     assertEquals(developerUpdate, obtainedDeveloper)
   }
-
 }

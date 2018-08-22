@@ -9,4 +9,3 @@ fun async(complete: () -> Result): CompletionStage<Result> =
 
 fun Result.completeFuture(): CompletionStage<Result> =
   CompletableFuture.completedFuture(this)
-
