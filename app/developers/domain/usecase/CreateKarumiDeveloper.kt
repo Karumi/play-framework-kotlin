@@ -1,7 +1,6 @@
 package developers.domain.usecase
 
 import arrow.core.Either
-import arrow.core.Either.Companion.cond
 import arrow.core.flatMap
 import developers.domain.Developer
 import developers.domain.DeveloperError
@@ -22,7 +21,7 @@ class CreateKarumiDeveloper @Inject constructor(
       }
 
   private fun validKarumiDeveloper(developer: Developer): Either<DeveloperError, Developer> =
-    cond(
+    Either.cond(
       test = DeveloperValidator.isKarumiDeveloper(developer),
       ifTrue = { developer },
       ifFalse = { DeveloperError.NotKarumier }
